@@ -1,0 +1,22 @@
+{
+  "name": "world-sql-practice",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "build:editor": "node scripts/build-editor.mjs",
+    "verify:accuracy": "python3 scripts/verify_accuracy.py"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "esbuild": "^0.28.2"
+  },
+  "dependencies": {
+    "monaco-editor": "^0.57.0",
+    "sql-formatter": "^15.9.0"
+  },
+  "overrides": {
+    "dompurify": "^3.4.16"
+  },
+  "author": "Prateek Dhall"
+}

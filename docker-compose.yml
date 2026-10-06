@@ -1,0 +1,33 @@
+# Author: Prateek Dhall — World Dataset Assignment.
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "127.0.0.1:3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "mysql", "--protocol=TCP", "-h127.0.0.1", "-usql_runner", "-psql_runner_pw", "-e", "SELECT COUNT(*) FROM world.country; SELECT COUNT(*) FROM world_example.country; SELECT COUNT(*) FROM world_hidden.country;"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  app:
+    build: .
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: sql_runner
+      DB_PASSWORD: sql_runner_pw
+      DB_NAME: world
+    ports:
+      - "127.0.0.1:8080:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  mysql_data:

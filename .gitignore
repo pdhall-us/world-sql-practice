@@ -1,0 +1,46 @@
+# Dependencies and virtual environments
+node_modules/
+.venv/
+venv/
+
+# Automated test outputs and browser state
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+playwright/.auth/
+.auth/
+browser-profile/
+user-data-dir/
+storage-state*.json
+storageState*.json
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local settings, secrets, and personal exports
+.env
+.env.*
+!.env.example
+local-data/
+exports/
+backups/
+*.log
+*.sql.bak
+*.sqlite
+*.sqlite3
+*.db
+
+# Downloaded seed archive (the extracted sample SQL is intentional)
+.world-db.zip
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/

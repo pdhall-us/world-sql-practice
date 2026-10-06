@@ -1,0 +1,724 @@
+[
+  {
+    "id": 1,
+    "title": "Countries in Asia",
+    "difficulty": "Easy",
+    "description": "List all the countries in Asia.",
+    "tables": [
+      "country"
+    ],
+    "return_columns": [
+      "CountryName"
+    ],
+    "notes": [
+      "Return each country name.",
+      "Return the result ordered by CountryName ascending."
+    ],
+    "reference_sql": "SELECT Name CountryName FROM country WHERE Continent='Asia' ORDER BY CountryName",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Filtering",
+    "source": "World Dataset - Assignment (SQL).pdf"
+  },
+  {
+    "id": 2,
+    "title": "Top 5 Most Populated Cities",
+    "difficulty": "Easy",
+    "description": "Find the top 5 most populated cities.",
+    "tables": [
+      "city"
+    ],
+    "return_columns": [
+      "CityName",
+      "CityPopulation"
+    ],
+    "notes": [
+      "Sort by population descending, then city name ascending, then city ID ascending to resolve ties.",
+      "Return at most 5 rows."
+    ],
+    "reference_sql": "SELECT Name CityName,Population CityPopulation FROM city ORDER BY Population DESC,Name,ID LIMIT 5",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Sorting, LIMIT",
+    "source": "World Dataset - Assignment (SQL).pdf"
+  },
+  {
+    "id": 3,
+    "title": "Official Languages Spoken in Europe",
+    "difficulty": "Easy",
+    "description": "List all the official languages spoken in Europe.",
+    "tables": [
+      "country",
+      "countrylanguage"
+    ],
+    "return_columns": [
+      "Language"
+    ],
+    "notes": [
+      "Only include IsOfficial = 'T'.",
+      "Return each language once, even when official in multiple European countries.",
+      "Return languages in alphabetical order."
+    ],
+    "reference_sql": "SELECT DISTINCT cl.Language FROM country c JOIN countrylanguage cl ON cl.CountryCode=c.Code WHERE c.Continent='Europe' AND cl.IsOfficial='T' ORDER BY cl.Language",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Joins, DISTINCT",
+    "source": "World Dataset - Assignment (SQL).pdf"
+  },
+  {
+    "id": 4,
+    "title": "Cities in India",
+    "difficulty": "Easy",
+    "description": "Display the name and population of cities in India.",
+    "tables": [
+      "country",
+      "city"
+    ],
+    "return_columns": [
+      "CityName",
+      "CityPopulation"
+    ],
+    "notes": [
+      "Use the country named India (country code IND in the official dataset).",
+      "Sort by city name ascending, then population descending."
+    ],
+    "reference_sql": "SELECT ci.Name CityName,ci.Population CityPopulation FROM city ci JOIN country c ON c.Code=ci.CountryCode WHERE c.Name='India' ORDER BY CityName,CityPopulation DESC",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Joins, Filtering",
+    "source": "World Dataset - Assignment (SQL).pdf"
+  },
+  {
+    "id": 5,
+    "title": "Countries Above 100 Million Population",
+    "difficulty": "Easy",
+    "description": "Find countries with population more than 100 million.",
+    "tables": [
+      "country"
+    ],
+    "return_columns": [
+      "CountryName",
+      "CountryPopulation"
+    ],
+    "notes": [
+      "Population must be strictly greater than 100,000,000.",
+      "Return the result ordered by CountryName ascending."
+    ],
+    "reference_sql": "SELECT Name CountryName,Population CountryPopulation FROM country WHERE Population>100000000 ORDER BY CountryName",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Filtering",
+    "source": "World Dataset - Assignment (SQL).pdf"
+  },
+  {
+    "id": 6,
+    "title": "Cities in California",
+    "difficulty": "Easy",
+    "description": "List all cities that belong to the district California.",
+    "tables": [
+      "city"
+    ],
+    "return_columns": [
+      "CityName"
+    ],
+    "notes": [
+      "Use city.District = 'California'.",
+      "Return each city row; do not remove distinct cities that happen to share a name.",
+      "Return the result ordered by CityName ascending."
+    ],
+    "reference_sql": "SELECT Name CityName FROM city WHERE District='California' ORDER BY CityName",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Filtering",
+    "source": "World Dataset - Assignment (SQL).pdf"
+  },
+  {
+    "id": 7,
+    "title": "Number of Countries in Each Continent",
+    "difficulty": "Easy",
+    "description": "Get the total number of countries in each continent.",
+    "tables": [
+      "country"
+    ],
+    "return_columns": [
+      "Continent",
+      "NumberOfCountries"
+    ],
+    "notes": [
+      "Count countries, not cities or languages.",
+      "Return the result in any order."
+    ],
+    "reference_sql": "SELECT Continent,COUNT(*) NumberOfCountries FROM country GROUP BY Continent",
+    "ordered": false,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, GROUP BY",
+    "source": "World Dataset - Assignment (SQL).pdf"
+  },
+  {
+    "id": 8,
+    "title": "10 Smallest Countries by Surface Area",
+    "difficulty": "Easy",
+    "description": "Show the name and surface area of the 10 smallest countries.",
+    "tables": [
+      "country"
+    ],
+    "return_columns": [
+      "CountryName",
+      "SurfaceArea"
+    ],
+    "notes": [
+      "Sort by surface area ascending, then country name ascending.",
+      "Include recorded zero-area countries.",
+      "Return at most 10 rows."
+    ],
+    "reference_sql": "SELECT Name CountryName,SurfaceArea FROM country ORDER BY SurfaceArea,CountryName LIMIT 10",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Sorting, LIMIT",
+    "source": "World Dataset - Assignment (SQL).pdf"
+  },
+  {
+    "id": 9,
+    "title": "Countries Where English Is Official",
+    "difficulty": "Easy",
+    "description": "List all countries where English is an official language.",
+    "tables": [
+      "country",
+      "countrylanguage"
+    ],
+    "return_columns": [
+      "CountryName"
+    ],
+    "notes": [
+      "Require Language = 'English' and IsOfficial = 'T'.",
+      "A country where English is only non-official must not appear.",
+      "Return the result ordered by CountryName ascending."
+    ],
+    "reference_sql": "SELECT c.Name CountryName FROM country c WHERE EXISTS(SELECT 1 FROM countrylanguage cl WHERE cl.CountryCode=c.Code AND cl.Language='English' AND cl.IsOfficial='T') ORDER BY CountryName",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Joins, Filtering",
+    "source": "World Dataset - Assignment (SQL).pdf"
+  },
+  {
+    "id": 10,
+    "title": "Average Population of All Cities",
+    "difficulty": "Easy",
+    "description": "Find the average population of all cities.",
+    "tables": [
+      "city"
+    ],
+    "return_columns": [
+      "AverageCityPopulation"
+    ],
+    "notes": [
+      "Calculate AVG(city.Population) across every city, without grouping by country.",
+      "Round the returned average to 2 decimal places.",
+      "Return NULL when the testcase has no cities."
+    ],
+    "reference_sql": "SELECT ROUND(AVG(Population),2) AverageCityPopulation FROM city",
+    "ordered": false,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, AVG",
+    "source": "World Dataset - Assignment (SQL).pdf"
+  },
+  {
+    "id": 11,
+    "title": "Top 3 Most Spoken Languages in Each Continent",
+    "difficulty": "Medium",
+    "description": "Find the top 3 languages in each continent by estimated speakers. Estimated speakers = country.Population × countrylanguage.Percentage / 100. Aggregate the same language across countries before ranking.",
+    "tables": [
+      "country",
+      "countrylanguage"
+    ],
+    "return_columns": [
+      "Continent",
+      "Language",
+      "EstimatedSpeakers",
+      "LanguageRank"
+    ],
+    "notes": [
+      "Include official and non-official languages.",
+      "Use RANK() so ties share a rank.",
+      "Return ranks 1 through 3.",
+      "Return the result ordered by Continent, LanguageRank, then Language ascending.",
+      "Round calculated decimal output columns to 2 decimal places; use unrounded values for filtering and ranking unless stated otherwise."
+    ],
+    "reference_sql": "WITH x AS (SELECT c.Continent, cl.Language, SUM(c.Population*cl.Percentage/100.0) EstimatedSpeakers FROM country c JOIN countrylanguage cl ON c.Code=cl.CountryCode GROUP BY c.Continent,cl.Language), r AS (SELECT x.*,RANK() OVER(PARTITION BY Continent ORDER BY EstimatedSpeakers DESC) LanguageRank FROM x) SELECT Continent,Language,ROUND(EstimatedSpeakers,2) EstimatedSpeakers,LanguageRank FROM r WHERE LanguageRank<=3 ORDER BY Continent,LanguageRank,Language",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Window Functions, Joins"
+  },
+  {
+    "id": 12,
+    "title": "Number of Cities in Each Country",
+    "difficulty": "Medium",
+    "description": "Display every country and the number of cities recorded for it. Countries with no city rows must appear with 0.",
+    "tables": [
+      "country",
+      "city"
+    ],
+    "return_columns": [
+      "CountryName",
+      "NumberOfCities"
+    ],
+    "notes": [
+      "Return every country.",
+      "Sort by city count descending, then country name.",
+      "Return the result ordered by NumberOfCities descending, then CountryName ascending."
+    ],
+    "reference_sql": "SELECT c.Name CountryName,COUNT(ci.ID) NumberOfCities FROM country c LEFT JOIN city ci ON c.Code=ci.CountryCode GROUP BY c.Code,c.Name ORDER BY NumberOfCities DESC,CountryName",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, Joins"
+  },
+  {
+    "id": 13,
+    "title": "Official Language Is Not the Most Spoken Language",
+    "difficulty": "Medium",
+    "description": "Return each official language whose percentage is lower than the maximum language percentage in its country.",
+    "tables": [
+      "country",
+      "countrylanguage"
+    ],
+    "return_columns": [
+      "CountryName",
+      "OfficialLanguage",
+      "OfficialLanguagePercentage",
+      "MostSpokenPercentage"
+    ],
+    "notes": [
+      "Use IsOfficial='T'.",
+      "An official language tied for maximum is not returned.",
+      "Return the result ordered by CountryName, then OfficialLanguage ascending."
+    ],
+    "reference_sql": "SELECT c.Name CountryName,cl.Language OfficialLanguage,cl.Percentage OfficialLanguagePercentage,m.mx MostSpokenPercentage FROM country c JOIN countrylanguage cl ON c.Code=cl.CountryCode JOIN (SELECT CountryCode,MAX(Percentage) mx FROM countrylanguage GROUP BY CountryCode)m ON m.CountryCode=c.Code WHERE cl.IsOfficial='T' AND cl.Percentage<m.mx ORDER BY CountryName,OfficialLanguage",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, Joins"
+  },
+  {
+    "id": 14,
+    "title": "Most Populated City in Each Country",
+    "difficulty": "Medium",
+    "description": "Find the city or cities with the highest population in each country. Return all ties.",
+    "tables": [
+      "country",
+      "city"
+    ],
+    "return_columns": [
+      "CountryName",
+      "CityName",
+      "CityPopulation"
+    ],
+    "notes": [
+      "Return all ties.",
+      "Countries with no cities naturally have no row.",
+      "Return the result ordered by CountryName, then CityName ascending."
+    ],
+    "reference_sql": "WITH r AS (SELECT c.Name CountryName,ci.Name CityName,ci.Population CityPopulation,RANK() OVER(PARTITION BY c.Code ORDER BY ci.Population DESC) rn FROM country c JOIN city ci ON c.Code=ci.CountryCode) SELECT CountryName,CityName,CityPopulation FROM r WHERE rn=1 ORDER BY CountryName,CityName",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Window Functions, Joins"
+  },
+  {
+    "id": 15,
+    "title": "Countries With No City Above One Million",
+    "difficulty": "Medium",
+    "description": "Find countries for which no recorded city has population greater than 1,000,000. Countries with no cities also qualify.",
+    "tables": [
+      "country",
+      "city"
+    ],
+    "return_columns": [
+      "CountryName",
+      "CountryPopulation",
+      "Continent"
+    ],
+    "notes": [
+      "Threshold is strictly greater than 1,000,000.",
+      "Include countries with no cities.",
+      "Return the result ordered by CountryName ascending."
+    ],
+    "reference_sql": "SELECT c.Name CountryName,c.Population CountryPopulation,c.Continent FROM country c WHERE NOT EXISTS(SELECT 1 FROM city ci WHERE ci.CountryCode=c.Code AND ci.Population>1000000) ORDER BY CountryName",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, Joins"
+  },
+  {
+    "id": 16,
+    "title": "Total Population of Each Region",
+    "difficulty": "Medium",
+    "description": "Calculate total country population for each region.",
+    "tables": [
+      "country"
+    ],
+    "return_columns": [
+      "Region",
+      "TotalPopulation"
+    ],
+    "notes": [
+      "Use country.Population.",
+      "Sort descending by total population.",
+      "Return the result ordered by TotalPopulation descending, then Region ascending."
+    ],
+    "reference_sql": "SELECT Region,SUM(Population) TotalPopulation FROM country GROUP BY Region ORDER BY TotalPopulation DESC,Region",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, Filtering"
+  },
+  {
+    "id": 17,
+    "title": "Countries by Surface Area and Population Density",
+    "difficulty": "Medium",
+    "description": "List countries with surface area between 10,000 and 50,000 km² inclusive and population density greater than 100. Density = Population / SurfaceArea.",
+    "tables": [
+      "country"
+    ],
+    "return_columns": [
+      "CountryName",
+      "SurfaceArea",
+      "Population",
+      "PopulationDensity"
+    ],
+    "notes": [
+      "Protect against division by zero.",
+      "Density must be strictly greater than 100.",
+      "Return the result ordered by PopulationDensity descending, then CountryName ascending.",
+      "Round calculated decimal output columns to 2 decimal places; use unrounded values for filtering and ranking unless stated otherwise."
+    ],
+    "reference_sql": "SELECT Name CountryName,SurfaceArea,Population,ROUND(Population/NULLIF(SurfaceArea,0),2) PopulationDensity FROM country WHERE SurfaceArea BETWEEN 10000 AND 50000 AND Population/NULLIF(SurfaceArea,0)>100 ORDER BY PopulationDensity DESC,CountryName",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, Filtering"
+  },
+  {
+    "id": 18,
+    "title": "Countries With More Than 3 Official Languages",
+    "difficulty": "Medium",
+    "description": "Find countries having more than 3 official languages.",
+    "tables": [
+      "country",
+      "countrylanguage"
+    ],
+    "return_columns": [
+      "CountryName",
+      "NumberOfOfficialLanguages"
+    ],
+    "notes": [
+      "Count only IsOfficial='T'.",
+      "Condition is strictly more than 3.",
+      "Return the result ordered by NumberOfOfficialLanguages descending, then CountryName ascending."
+    ],
+    "reference_sql": "SELECT c.Name CountryName,COUNT(*) NumberOfOfficialLanguages FROM country c JOIN countrylanguage cl ON c.Code=cl.CountryCode WHERE cl.IsOfficial='T' GROUP BY c.Code,c.Name HAVING COUNT(*)>3 ORDER BY NumberOfOfficialLanguages DESC,CountryName",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, Joins"
+  },
+  {
+    "id": 19,
+    "title": "Top 5 Countries by Number of Cities",
+    "difficulty": "Medium",
+    "description": "Find the 5 countries with the highest number of recorded cities.",
+    "tables": [
+      "country",
+      "city"
+    ],
+    "return_columns": [
+      "CountryName",
+      "NumberOfCities"
+    ],
+    "notes": [
+      "Resolve count ties alphabetically.",
+      "Return exactly the first 5 rows after sorting.",
+      "Return the result ordered by NumberOfCities descending, then CountryName ascending."
+    ],
+    "reference_sql": "SELECT c.Name CountryName,COUNT(ci.ID) NumberOfCities FROM country c LEFT JOIN city ci ON c.Code=ci.CountryCode GROUP BY c.Code,c.Name ORDER BY NumberOfCities DESC,CountryName LIMIT 5",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, Joins"
+  },
+  {
+    "id": 20,
+    "title": "Cities Above Their Country's Average City Population",
+    "difficulty": "Medium",
+    "description": "Find cities whose population is greater than the average city population in the same country.",
+    "tables": [
+      "country",
+      "city"
+    ],
+    "return_columns": [
+      "CountryName",
+      "CityName",
+      "CityPopulation",
+      "CountryAverageCityPopulation"
+    ],
+    "notes": [
+      "Calculate average separately per country.",
+      "Comparison is strictly greater than average.",
+      "Return the result ordered by CountryName ascending, CityPopulation descending, then CityName ascending.",
+      "Round calculated decimal output columns to 2 decimal places; use unrounded values for filtering and ranking unless stated otherwise."
+    ],
+    "reference_sql": "SELECT c.Name CountryName,ci.Name CityName,ci.Population CityPopulation,ROUND(a.avgpop,2) CountryAverageCityPopulation FROM city ci JOIN country c ON c.Code=ci.CountryCode JOIN (SELECT CountryCode,AVG(Population) avgpop FROM city GROUP BY CountryCode)a ON a.CountryCode=ci.CountryCode WHERE ci.Population>a.avgpop ORDER BY CountryName,CityPopulation DESC,CityName",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, Joins"
+  },
+  {
+    "id": 21,
+    "title": "Continents With Large Population but No Official English",
+    "difficulty": "Hard",
+    "description": "Return continents with total population above 500 million where English is not official in any country in that continent.",
+    "tables": [
+      "country",
+      "countrylanguage"
+    ],
+    "return_columns": [
+      "Continent",
+      "TotalPopulation"
+    ],
+    "notes": [
+      "A single country with official English disqualifies the continent.",
+      "Return the result ordered by TotalPopulation descending, then Continent ascending."
+    ],
+    "reference_sql": "SELECT c.Continent,SUM(c.Population) TotalPopulation FROM country c GROUP BY c.Continent HAVING SUM(c.Population)>500000000 AND NOT EXISTS(SELECT 1 FROM country c2 JOIN countrylanguage cl ON c2.Code=cl.CountryCode WHERE c2.Continent=c.Continent AND cl.Language='English' AND cl.IsOfficial='T') ORDER BY TotalPopulation DESC,Continent",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, Joins"
+  },
+  {
+    "id": 22,
+    "title": "Capital Below the Country's Average City Population",
+    "difficulty": "Hard",
+    "description": "Find countries whose capital city population is below the average population of all recorded cities in that country.",
+    "tables": [
+      "country",
+      "city"
+    ],
+    "return_columns": [
+      "CountryName",
+      "CapitalCity",
+      "CapitalPopulation",
+      "AverageCityPopulation"
+    ],
+    "notes": [
+      "Use country.Capital = city.ID.",
+      "Exclude NULL or unmatched capitals.",
+      "Return the result ordered by CountryName ascending.",
+      "Round calculated decimal output columns to 2 decimal places; use unrounded values for filtering and ranking unless stated otherwise."
+    ],
+    "reference_sql": "SELECT c.Name CountryName,cap.Name CapitalCity,cap.Population CapitalPopulation,ROUND(a.avgpop,2) AverageCityPopulation FROM country c JOIN city cap ON cap.ID=c.Capital JOIN (SELECT CountryCode,AVG(Population) avgpop FROM city GROUP BY CountryCode)a ON a.CountryCode=c.Code WHERE cap.Population<a.avgpop ORDER BY CountryName",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, Joins"
+  },
+  {
+    "id": 23,
+    "title": "Country-Wise Language Diversity Index",
+    "difficulty": "Hard",
+    "description": "For every country, return the number of distinct recorded languages as its language diversity index.",
+    "tables": [
+      "country",
+      "countrylanguage"
+    ],
+    "return_columns": [
+      "CountryName",
+      "LanguageDiversityIndex"
+    ],
+    "notes": [
+      "Countries with no language rows must show 0.",
+      "Count DISTINCT Language.",
+      "Return the result ordered by LanguageDiversityIndex descending, then CountryName ascending."
+    ],
+    "reference_sql": "SELECT c.Name CountryName,COUNT(DISTINCT cl.Language) LanguageDiversityIndex FROM country c LEFT JOIN countrylanguage cl ON c.Code=cl.CountryCode GROUP BY c.Code,c.Name ORDER BY LanguageDiversityIndex DESC,CountryName",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, Joins"
+  },
+  {
+    "id": 24,
+    "title": "World Population in Countries Where Hindi or Urdu Is Spoken",
+    "difficulty": "Hard",
+    "description": "Calculate the percentage of world population living in countries where Hindi or Urdu is recorded. Count each qualifying country once.",
+    "tables": [
+      "country",
+      "countrylanguage"
+    ],
+    "return_columns": [
+      "QualifyingPopulation",
+      "WorldPopulation",
+      "WorldPopulationPercentage"
+    ],
+    "notes": [
+      "Use country.Population, not language Percentage, for qualifying-country population.",
+      "Do not double count countries.",
+      "Round calculated decimal output columns to 2 decimal places; use unrounded values for filtering and ranking unless stated otherwise."
+    ],
+    "reference_sql": "SELECT SUM(CASE WHEN EXISTS(SELECT 1 FROM countrylanguage cl WHERE cl.CountryCode=c.Code AND cl.Language IN('Hindi','Urdu')) THEN c.Population ELSE 0 END) QualifyingPopulation,SUM(c.Population) WorldPopulation,ROUND(100.0*SUM(CASE WHEN EXISTS(SELECT 1 FROM countrylanguage cl WHERE cl.CountryCode=c.Code AND cl.Language IN('Hindi','Urdu')) THEN c.Population ELSE 0 END)/SUM(c.Population),2) WorldPopulationPercentage FROM country c",
+    "ordered": false,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, Joins"
+  },
+  {
+    "id": 25,
+    "title": "Rank Cities by Population Within Each Region",
+    "difficulty": "Hard",
+    "description": "Rank cities by population within each region. Equal populations receive the same rank.",
+    "tables": [
+      "country",
+      "city"
+    ],
+    "return_columns": [
+      "Region",
+      "CityName",
+      "CountryName",
+      "CityPopulation",
+      "PopulationRank"
+    ],
+    "notes": [
+      "Ranking restarts per Region.",
+      "Use RANK() for ties.",
+      "Return the result ordered by Region ascending, PopulationRank ascending, then CityName and CountryName ascending."
+    ],
+    "reference_sql": "SELECT c.Region,ci.Name CityName,c.Name CountryName,ci.Population CityPopulation,RANK() OVER(PARTITION BY c.Region ORDER BY ci.Population DESC) PopulationRank FROM city ci JOIN country c ON c.Code=ci.CountryCode ORDER BY Region,PopulationRank,CityName,CountryName",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Window Functions, Joins"
+  },
+  {
+    "id": 26,
+    "title": "Top 5 Languages Globally by Estimated Speakers",
+    "difficulty": "Hard",
+    "description": "Find the top 5 languages globally by estimated speakers. Estimate each country-language as Population × Percentage / 100, then aggregate by language.",
+    "tables": [
+      "country",
+      "countrylanguage"
+    ],
+    "return_columns": [
+      "Language",
+      "EstimatedSpeakers",
+      "EstimatedWorldPopulationShare"
+    ],
+    "notes": [
+      "Include official and non-official languages.",
+      "World share uses total country population as denominator.",
+      "Return the result ordered by EstimatedSpeakers descending, then Language ascending.",
+      "Round calculated decimal output columns to 2 decimal places; use unrounded values for filtering and ranking unless stated otherwise.",
+      "Resolve estimated-speaker ties alphabetically by Language. Return at most 5 languages."
+    ],
+    "reference_sql": "SELECT cl.Language,ROUND(SUM(c.Population*cl.Percentage/100.0),2) EstimatedSpeakers,ROUND(100.0*SUM(c.Population*cl.Percentage/100.0)/(SELECT SUM(Population) FROM country),2) EstimatedWorldPopulationShare FROM country c JOIN countrylanguage cl ON c.Code=cl.CountryCode GROUP BY cl.Language ORDER BY SUM(c.Population*cl.Percentage/100.0) DESC,cl.Language LIMIT 5",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, Joins"
+  },
+  {
+    "id": 27,
+    "title": "Largest City Relative to Country Surface Area",
+    "difficulty": "Hard",
+    "description": "The standard world.city table has no city area, so true city population density cannot be calculated. Instead, for each continent find the city with the highest CityPopulation / CountrySurfaceArea comparison ratio.",
+    "tables": [
+      "country",
+      "city"
+    ],
+    "return_columns": [
+      "Continent",
+      "CityName",
+      "CountryName",
+      "CityPopulation",
+      "CountrySurfaceArea",
+      "PopulationToAreaRatio"
+    ],
+    "notes": [
+      "This ratio is not true city density.",
+      "Exclude zero surface area.",
+      "Return all ties.",
+      "Return the result ordered by Continent, then CityName ascending.",
+      "Round calculated decimal output columns to 2 decimal places; use unrounded values for filtering and ranking unless stated otherwise."
+    ],
+    "reference_sql": "WITH x AS (SELECT c.Continent,ci.Name CityName,c.Name CountryName,ci.Population CityPopulation,c.SurfaceArea CountrySurfaceArea,ci.Population/NULLIF(c.SurfaceArea,0) ratio FROM city ci JOIN country c ON c.Code=ci.CountryCode WHERE c.SurfaceArea>0),r AS(SELECT x.*,RANK() OVER(PARTITION BY Continent ORDER BY ratio DESC) rn FROM x) SELECT Continent,CityName,CountryName,CityPopulation,CountrySurfaceArea,ROUND(ratio,2) PopulationToAreaRatio FROM r WHERE rn=1 ORDER BY Continent,CityName",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Window Functions, Joins"
+  },
+  {
+    "id": 28,
+    "title": "Top 10 Cities Where English Is Not Official",
+    "difficulty": "Hard",
+    "description": "Return the top 10 most populated cities whose country does not have English as an official language.",
+    "tables": [
+      "country",
+      "city",
+      "countrylanguage"
+    ],
+    "return_columns": [
+      "CityName",
+      "CountryName",
+      "Continent",
+      "CityPopulation"
+    ],
+    "notes": [
+      "Non-official English does not exclude a country.",
+      "Sort population descending, then city name.",
+      "Return the result ordered by CityPopulation descending, then CityName ascending, then CountryName ascending."
+    ],
+    "reference_sql": "SELECT ci.Name CityName,c.Name CountryName,c.Continent,ci.Population CityPopulation FROM city ci JOIN country c ON c.Code=ci.CountryCode WHERE NOT EXISTS(SELECT 1 FROM countrylanguage cl WHERE cl.CountryCode=c.Code AND cl.Language='English' AND cl.IsOfficial='T') ORDER BY CityPopulation DESC,CityName,CountryName LIMIT 10",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Aggregation, Joins"
+  },
+  {
+    "id": 29,
+    "title": "Countries Where Two Cities Hold More Than 50% of Population",
+    "difficulty": "Hard",
+    "description": "Find countries where their two most populated recorded cities together exceed 50% of country population.",
+    "tables": [
+      "country",
+      "city"
+    ],
+    "return_columns": [
+      "CountryName",
+      "CountryPopulation",
+      "TopTwoCitiesPopulation",
+      "TopTwoPopulationPercentage"
+    ],
+    "notes": [
+      "Require at least two recorded cities.",
+      "Exactly 50% does not qualify.",
+      "Exclude zero country population.",
+      "Return the result ordered by TopTwoPopulationPercentage descending, then CountryName ascending.",
+      "Round calculated decimal output columns to 2 decimal places; use unrounded values for filtering and ranking unless stated otherwise."
+    ],
+    "reference_sql": "WITH r AS(SELECT ci.CountryCode,ci.Population,ROW_NUMBER() OVER(PARTITION BY ci.CountryCode ORDER BY ci.Population DESC,ci.ID) rn,COUNT(*) OVER(PARTITION BY ci.CountryCode) cnt FROM city ci),t AS(SELECT CountryCode,SUM(Population) top2,MAX(cnt) cnt FROM r WHERE rn<=2 GROUP BY CountryCode) SELECT c.Name CountryName,c.Population CountryPopulation,t.top2 TopTwoCitiesPopulation,ROUND(100.0*t.top2/c.Population,2) TopTwoPopulationPercentage FROM country c JOIN t ON t.CountryCode=c.Code WHERE t.cnt>=2 AND c.Population>0 AND t.top2>0.5*c.Population ORDER BY TopTwoPopulationPercentage DESC,CountryName",
+    "ordered": true,
+    "starter_sql": "-- Write your MySQL query statement below\n",
+    "topics": "Window Functions, Joins"
+  },
+  {
+    "id": 30,
+    "title": "Create a Country Summary View",
+    "difficulty": "Hard",
+    "description": "Write CREATE VIEW country_summary AS ... so the view returns one row per country: country name, population, city count, official-language count, and most populated city. The evaluator safely extracts and tests the SELECT portion without creating a persistent view.",
+    "tables": [
+      "country",
+      "city",
+      "countrylanguage"
+    ],
+    "return_columns": [
+      "CountryName",
+      "TotalPopulation",
+      "NumberOfCities",
+      "NumberOfOfficialLanguages",
+      "MostPopulatedCity"
+    ],
+    "notes": [
+      "Avoid count multiplication from joining two one-to-many tables.",
+      "Countries with no cities remain.",
+      "If largest cities tie, choose alphabetically first.",
+      "Return the result ordered by CountryName ascending."
+    ],
+    "reference_sql": "WITH cc AS(SELECT CountryCode,COUNT(*) n FROM city GROUP BY CountryCode),ol AS(SELECT CountryCode,COUNT(*) n FROM countrylanguage WHERE IsOfficial='T' GROUP BY CountryCode),mc AS(SELECT CountryCode,Name,ROW_NUMBER() OVER(PARTITION BY CountryCode ORDER BY Population DESC,Name) rn FROM city) SELECT c.Name CountryName,c.Population TotalPopulation,COALESCE(cc.n,0) NumberOfCities,COALESCE(ol.n,0) NumberOfOfficialLanguages,mc.Name MostPopulatedCity FROM country c LEFT JOIN cc ON cc.CountryCode=c.Code LEFT JOIN ol ON ol.CountryCode=c.Code LEFT JOIN mc ON mc.CountryCode=c.Code AND mc.rn=1 ORDER BY CountryName",
+    "ordered": true,
+    "starter_sql": "CREATE VIEW country_summary AS\n-- Write your MySQL query below\n",
+    "topics": "Window Functions, Joins"
+  }
+]

@@ -397,6 +397,12 @@ The official seed is committed in `mysql-init/00-world.sql`. If it is missing, m
 
 </details>
 
+## 📚 Companion solutions
+
+Explore [World Dataset SQL Solutions](https://github.com/pdhall-us/world-dataset-sql-solutions) for SQL solutions to all **30 assignment questions**, organized into **Easy**, **Medium**, and **Hard** folders. Each problem has a README and a `solution.sql` file.
+
+Try a question in this application first, then use the companion repository to review the solution and revisit the SQL concepts involved.
+
 ## ⚙️ Built with
 
 <p align="center">
